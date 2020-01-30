@@ -12,12 +12,24 @@ const typeDefs = gql`
   }
 
   type Query {
-    _dummy: String
+    getTodos: [Todo]
   }
 `;
 
+// Alternative
+//   getTodos: function() {
+//     return todos;
+//   }
+
+const resolvers = {
+  Query: {
+    getTodos: () => todos
+  }
+};
+
 const server = new ApolloServer({
-  typeDefs
+  typeDefs,
+  resolvers
 });
 
 (async function() {
